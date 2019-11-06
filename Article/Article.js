@@ -88,6 +88,15 @@ const data = [
   }
 ];
 
+
+data.push({
+  title: 'KJ',
+  date: "12/21/2012",
+  firstParagraph: 'blablablablablablabla',
+  secondParagraph: 'Blaaaaaabitty bla bla bla',
+  thirdParagraph: 'words words words hip hop ya dont stop bla bla'
+})
+
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
@@ -112,3 +121,58 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticle (title, date, firstPar, secondPar, thirdPar) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const paragraphOne = document.createElement('p');
+  const paragraphTwo = document.createElement('p');
+  const paragraphThree = document.createElement('p');
+  const expandButton = document.createElement('span');
+  const closeButton = document.createElement('span');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(expandButton);
+  article.appendChild(paragraphOne);
+  article.appendChild(paragraphTwo);
+  article.appendChild(paragraphThree);
+  article.appendChild(closeButton);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+  closeButton.classList.add('hide');
+
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+    expandButton.classList = 'hide';
+    closeButton.classList = 'expandButton show';
+  })
+
+  closeButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  paragraphOne.textContent = firstPar;
+  paragraphTwo.textContent = secondPar;
+  paragraphThree.textContent = thirdPar;
+  expandButton.textContent = 'Read More';
+  closeButton.textContent = 'Read Less';
+
+
+
+  return article;
+}
+
+const parentComponent = document.querySelector('.articles');
+data.forEach(data => {
+  const newArticle = createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph);
+  parentComponent.appendChild(newArticle);
+})
+
+
+
