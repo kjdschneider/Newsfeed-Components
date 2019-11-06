@@ -41,9 +41,12 @@ function createMenu (array) {
   const menuList = document.createElement('ul');
 
   array.forEach(item => {
-    const newItem = document.createElement('li');
-    newItem.textContent = item;
-    menuList.appendChild(newItem);
+    const newATag = document.createElement('a');
+    const newLineItem = document.createElement('li');
+    newATag.href = '#';
+    newLineItem.textContent = item;
+    newATag.appendChild(newLineItem);
+    menuList.appendChild(newATag);
   })
 
   menu.classList.add('menu');
