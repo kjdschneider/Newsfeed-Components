@@ -130,6 +130,7 @@ function createArticle (title, date, firstPar, secondPar, thirdPar) {
   const paragraphTwo = document.createElement('p');
   const paragraphThree = document.createElement('p');
   const expandButton = document.createElement('span');
+  const closeButton = document.createElement('span');
 
   article.appendChild(articleTitle);
   article.appendChild(articleDate);
@@ -137,19 +138,21 @@ function createArticle (title, date, firstPar, secondPar, thirdPar) {
   article.appendChild(paragraphOne);
   article.appendChild(paragraphTwo);
   article.appendChild(paragraphThree);
-
+  article.appendChild(closeButton);
 
   article.classList.add('article');
   articleDate.classList.add('date');
   expandButton.classList.add('expandButton');
+  closeButton.classList.add('hide');
 
   expandButton.addEventListener('click', () => {
     article.classList.toggle('article-open');
-    // if (article.style.height === '50px'){
-    //   expandButton.textContent = 'Read More';
-    // } else if (article.style.height === '400px'){
-    //   expandButton.textContent = 'Read Less';
-    // }
+    expandButton.classList = 'hide';
+    closeButton.classList = 'expandButton show';
+  })
+
+  closeButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
   })
 
   articleTitle.textContent = title;
@@ -158,6 +161,7 @@ function createArticle (title, date, firstPar, secondPar, thirdPar) {
   paragraphTwo.textContent = secondPar;
   paragraphThree.textContent = thirdPar;
   expandButton.textContent = 'Read More';
+  closeButton.textContent = 'Read Less';
 
 
 
